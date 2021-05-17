@@ -4,27 +4,26 @@ import NewExpense from "./NewExpense";
 import "./ExpenseForm.css";
 
 const ExpenseForm = () => {
-// multistate is very common 
+  // multistate is very common
 
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
-    // const [userInput, setUserInput] = useState({
-    //     enteredTitle: '',
-    //     enteredAmount: '',
-    //     enteredDate: ''
-    // });
-
+  // const [userInput, setUserInput] = useState({
+  //     enteredTitle: '',
+  //     enteredAmount: '',
+  //     enteredDate: ''
+  // });
 
   const titleChangeHandler = (event) => {
-      setEnteredTitle(event.target.value);
+    setEnteredTitle(event.target.value);
     // setUserInput({
-    //     // so that we dont lose the other data 
+    //     // so that we dont lose the other data
     //     ...userInput,
     //     enteredTitle: event.target.value,
     // })
 
-    // this is better because it update instantly 
+    // this is better because it update instantly
     // setUserInput((prevState) => {
     //     return {...prevState, enteredTitle: event.target.value};
     // })
@@ -54,16 +53,21 @@ const ExpenseForm = () => {
     // })
   };
 
-  const submitHandler = () => {
+  const submitHandler = (event) => {
     // dont let page refresh so that we stay on the same page
     event.preventDefault();
 
     const expenseData = {
-        title: enteredTitle,
-        amount: enteredAmount,
-        date: new Date(enteredDate)
+      title: enteredTitle,
+      amount: enteredAmount,
+      date: new Date(enteredDate),
     };
-    
+
+        // clear the input 
+    console.log(expenseData);
+    setEnteredTitle('');
+    setEnteredAmount('');
+    setEnteredDate('');
   };
 
   return (
@@ -71,7 +75,11 @@ const ExpenseForm = () => {
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
-          <input type="text" onChange={titleChangeHandler}></input>
+          <input
+            type="text"
+            value={enteredTitle}
+            onChange={titleChangeHandler}
+          ></input>
         </div>
 
         <div className="new-expense__control">
@@ -80,6 +88,7 @@ const ExpenseForm = () => {
             type="number"
             min="0.01"
             step="0.01"
+            value={enteredAmount}
             onChange={amountChangeHandler}
           ></input>
         </div>
@@ -90,6 +99,7 @@ const ExpenseForm = () => {
             type="date"
             min="2019-01-01"
             max="2022-12-31"
+            value={enteredDate}
             onChange={dateChangeHandler}
           ></input>
         </div>
