@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import NewExpense from "./NewExpense";
 import "./ExpenseForm.css";
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
   // multistate is very common
 
   const [enteredTitle, setEnteredTitle] = useState("");
@@ -64,7 +64,7 @@ const ExpenseForm = () => {
     };
 
         // clear the input 
-    console.log(expenseData);
+    props.onSaveExpenseData(expenseData);
     setEnteredTitle('');
     setEnteredAmount('');
     setEnteredDate('');
