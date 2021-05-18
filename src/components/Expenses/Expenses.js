@@ -23,6 +23,8 @@ function Expenses(props) {
         {/* we want array full of expense items  */}
         {props.items.map((expense) => (
           <ExpenseItem
+          // key is used for react to identify the elements 
+            key={expense.id}
             title={expense.title}
             amount={expense.amount}
             date={expense.date}
