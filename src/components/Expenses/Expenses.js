@@ -4,6 +4,7 @@ import ExpensesList from "./ExpensesList"
 import "./Expenses.css";
 import ExpensesFilter from "../NewExpense/ExpensesFilter";
 import Card from "../UI/Card";
+import ExpensesChart from "./ExpensesChart";
 
 function Expenses(props) {
   const [filteredYear, setFilteredYear] = useState("2020");
@@ -25,6 +26,8 @@ function Expenses(props) {
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
         ></ExpensesFilter>
+        <ExpensesChart expenses={filterExpenses}></ExpensesChart>
+
         <ExpensesList items={filterExpenses}></ExpensesList>
         {/* create a new array based on the original array  */}
         {/* we want array full of expense items  */}
