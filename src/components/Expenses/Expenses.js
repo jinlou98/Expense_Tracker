@@ -12,6 +12,11 @@ function Expenses(props) {
     setFilteredYear(selectedYear);
   };
 
+  // the original array is not attacted 
+  const filterExpenses = props.items.filter(expense => {
+    return expense.date.getFullYear().toString() === filteredYear;
+  });
+
   return (
     <div>
       <Card className="expenses">
@@ -21,7 +26,7 @@ function Expenses(props) {
         ></ExpensesFilter>
         {/* create a new array based on the original array  */}
         {/* we want array full of expense items  */}
-        {props.items.map((expense) => (
+        {filterExpenses.map((expense) => (
           <ExpenseItem
           // key is used for react to identify the elements 
             key={expense.id}
